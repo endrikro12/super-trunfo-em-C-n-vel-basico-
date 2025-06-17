@@ -1,0 +1,97 @@
+
+
+*Estrutura do Código:*
+
+- `main.c`: Arquivo principal que contém a lógica do jogo.
+- `pecas.c`: Arquivo que contém as funções para movimentação das peças.
+- `tabuleiro.c`: Arquivo que contém as funções para manipulação do tabuleiro.
+
+main.c:
+#include <stdio.h>
+#include "pecas.h"
+#include "tabuleiro.h"
+
+int main() {
+    // Inicializar o tabuleiro
+    Tabuleiro tabuleiro;
+    inicializarTabuleiro(&tabuleiro);
+
+    // Loop principal do jogo
+    while (1) {
+        // Imprimir o tabuleiro
+        imprimirTabuleiro(&tabuleiro);
+
+        // Solicitar a peça a ser movida
+        printf("Digite a peça a ser movida (1-6): ");
+        int peca;
+        scanf("%d", &peca);
+
+        // Solicitar a posição de origem e destino
+        printf("Digite a posição de origem (x y): ");
+        int xOrigem, yOrigem;
+        scanf("%d %d", &xOrigem, &yOrigem);
+
+        printf("Digite a posição de destino (x y): ");
+        int xDestino, yDestino;
+        scanf("%d %d", &xDestino, &yDestino);
+
+        // Mover a peça
+        moverPeca(&tabuleiro, peca, xOrigem, yOrigem, xDestino, yDestino);
+    }
+
+    return 0;
+}
+pecas.c:
+#include <stdio.h>
+#include "pecas.h"
+
+// Função para movimentação da Torre
+void moverTorre(Tabuleiro *tabuleiro, int xOrigem, int yOrigem, int xDestino, int yDestino) {
+    // Verificar se o movimento é válido
+    if (xOrigem == xDestino || yOrigem == yDestino) {
+        // Mover a Torre
+        tabuleiro->pecas[xDestino][yDestino] = tabuleiro->pecas[xOrigem][yOrigem];
+        tabuleiro->pecas[xOrigem][yOrigem] = 0;
+    } else {
+        printf("Movimento inválido!\n");
+    }
+}
+
+// Função para movimentação do Bispo
+void moverBispo(Tabuleiro *tabuleiro, int xOrigem, int yOrigem, int xDestino, int yDestino) {
+    // Verificar se o movimento é válido
+    if (abs(xDestino - xOrigem) == abs(yDestino - yOrigem)) {
+        // Mover o Bispo
+        tabuleiro->pecas[xDestino][yDestino] = tabuleiro->pecas[xOrigem][yOrigem];
+        tabuleiro->pecas[xOrigem][yOrigem] = 0;
+    } else {
+        printf("Movimento inválido!\n");
+    }
+}
+
+// Função para movimentação da Rainha
+void moverRainha(Tabuleiro *tabuleiro, int xOrigem, int yOrigem, int xDestino, int yDestino) {
+    // Verificar se o movimento é válido
+    if (xOrigem == xDestino || yOrigem == yDestino || abs(xDestino - xOrigem) == abs(yDestino - yOrigem)) {
+        // Mover a Rainha
+        tabuleiro->pecas[xDestino][yDestino] = tabuleiro->pecas[xOrigem][yOrigem];
+        tabuleiro->pecas[xOrigem][yOrigem] = 0;
+    } else {
+        printf("Movimento inválido!\n");
+    }
+}
+
+// Função para movimentação do Cavalo
+void moverCavalo(Tabuleiro *tabuleiro, int xOrigem, int yOrigem, int xDestino, int yDestino) {
+    // Verificar se o movimento é válido
+    if ((abs(xDestino - xOrigem) == 2 && abs(yDestino - yOrigem) == 1) || (abs(xDestino - xOrigem) == 1 && abs(yDestino - yOrigem) == 2)) {
+        // Mover o Cavalo
+        tabuleiro->pecas[xDestino][yDestino, yDestino] = tabuleiro->pecas[xOrigem][yOrigem];
+        tabuleiro->pecas[xOrigem][yOrigem] = 0;
+    } else {
+        printf("Movimento inválido!\n");
+    }
+}
+
+// Função para movimentar uma peça
+void moverPeca(Tabuleiro *tabuleiro, int peca, int xOrigem
