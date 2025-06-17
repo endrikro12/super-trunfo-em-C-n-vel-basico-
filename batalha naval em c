@@ -1,0 +1,83 @@
+ tabuleiro de Batalha Naval simplificado em linguagem C:
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define LINHAS 10
+#define COLUNAS 10
+
+// Função para inicializar o tabuleiro
+void inicializarTabuleiro(char tabuleiro[LINHAS][COLUNAS]) {
+    for (int i = 0; i < LINHAS; i++) {
+        for (int j = 0; j < COLUNAS; j++) {
+            tabuleiro[i][j] = '~'; // '~' representa água
+        }
+    }
+}
+
+// Função para exibir o tabuleiro
+void exibirTabuleiro(char tabuleiro[LINHAS][COLUNAS]) {
+    printf("  ");
+    for (int i = 0; i < COLUNAS; i++) {
+        printf("%d ", i);
+    }
+    printf("\n");
+
+    for (int i = 0; i < LINHAS; i++) {
+        printf("%d ", i);
+        for (int j = 0; j < COLUNAS; j++) {
+            printf("%c ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// Função para posicionar navios aleatórios no tabuleiro
+void posicionarNavios(char tabuleiro[LINHAS][COLUNAS]) {
+    srand(time(NULL));
+    for (int i = 0; i < 5; i++) {
+        int linha = rand() % LINHAS;
+        int coluna = rand() % COLUNAS;
+        tabuleiro[linha][coluna] = 'N'; // 'N' representa um navio
+    }
+}
+
+// Função para simular áreas de efeito de habilidades especiais
+void habilidadeEspecial(char tabuleiro[LINHAS][COLUNAS], int linha, int coluna) {
+    for (int i = -1; i <= 1; i++) {
+        for (int j = -1; j <= 1; j++) {
+            int novaLinha = linha + i;
+            int novaColuna = coluna + j;
+
+            if (novaLinha >= 0 && novaLinha < LINHAS && novaColuna >= 0 && novaColuna < COLUNAS) {
+                if (tabuleiro[novaLinha][novaColuna] == 'N') {
+                    tabuleiro[novaLinha][novaColuna] = 'X'; // 'X' representa um navio atingido
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    char tabuleiro[LINHAS][COLUNAS];
+
+    inicializarTabuleiro(tabuleiro);
+    posicionarNavios(tabuleiro);
+
+    printf("Tabuleiro inicial:\n");
+    exibirTabuleiro(tabuleiro);
+
+    habilidadeEspecial(tabuleiro, 5, 5);
+
+    printf("Tabuleiro após habilidade especial:\n");
+    exibirTabuleiro(tabuleiro);
+
+    return 0;
+}
+Nesse exemplo, aplicamos os seguintes conceitos:
+
+- *Vetores e matrizes*: Utilizamos uma matriz `tabuleiro` para representar o tabuleiro de Batalha Naval, onde cada elemento da matriz pode ter um valor específico (por exemplo, '~' para água, 'N' para navio, 'X' para navio atingido).
+- *Estruturas de repetição aninhadas*: Utilizamos loops aninhados para inicializar o tabuleiro, exibir o tabuleiro e simular áreas de efeito de habilidades especiais.
+- *Condicionais dentro de loops aninhados*: Dentro da função `habilidadeEspecial`, utilizamos condicionais para verificar se uma posição no tabuleiro contém um navio e, se sim, marcá-lo como atingido.
+
+Esse exemplo demonstra como podemos utilizar esses conceitos para criar um tabuleiro de Batalha Naval simplificado e simular áreas de efeito de habilidades especiais.
