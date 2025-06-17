@@ -1,6 +1,6 @@
 
 
-*Super Trunfo: Jogo de Cartas*
+*Super Trunfo nível básico 
 
 O Super Trunfo é um jogo de cartas onde dois jogadores comparam suas cartas com base em propriedades específicas. O jogador com a carta que tiver o valor mais alto na propriedade escolhida vence.
 
