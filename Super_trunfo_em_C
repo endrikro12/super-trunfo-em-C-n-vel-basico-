@@ -1,0 +1,131 @@
+Aqui está um exemplo de como o programa pode ser implementado para atender aos requisitos:
+
+*Desafio 1: Comparação de cartas com base em um único atributo*
+#include <stdio.h>
+
+// Estrutura para representar uma carta
+typedef struct {
+    int atributo1;
+} Carta;
+
+int main() {
+    Carta carta1, carta2;
+
+    printf("Digite o valor do atributo da carta 1: ");
+    scanf("%d", &carta1.atributo1);
+
+    printf("Digite o valor do atributo da carta 2: ");
+    scanf("%d", &carta2.atributo1);
+
+    if (carta1.atributo1 > carta2.atributo1) {
+        printf("A carta 1 venceu!\n");
+    } else if (carta2.atributo1 > carta1.atributo1) {
+        printf("A carta 2 venceu!\n");
+    } else {
+        printf("Empate!\n");
+    }
+
+    return 0;
+}
+*Desafio 2: Comparação de cartas com múltiplos atributos*
+#include <stdio.h>
+
+// Estrutura para representar uma carta
+typedef struct {
+    int atributo1;
+    int atributo2;
+    int atributo3;
+} Carta;
+
+int main() {
+    Carta carta1, carta2;
+    int escolha;
+
+    printf("Digite o valor dos atributos da carta 1:\n");
+    printf("Atributo 1: ");
+    scanf("%d", &carta1.atributo1);
+    printf("Atributo 2: ");
+    scanf("%d", &carta1.atributo2);
+    printf("Atributo 3: ");
+    scanf("%d", &carta1.atributo3);
+
+    printf("Digite o valor dos atributos da carta 2:\n");
+    printf("Atributo 1: ");
+    scanf("%d", &carta2.atributo1);
+    printf("Atributo 2: ");
+    scanf("%d", &carta2.atributo2);
+    printf("Atributo 3: ");
+    scanf("%d", &carta2.atributo3);
+
+    printf("Escolha um atributo para comparar:\n");
+    printf("1. Atributo 1\n");
+    printf("2. Atributo 2\n");
+    printf("3. Atributo 3\n");
+    scanf("%d", &escolha);
+
+    switch (escolha) {
+        case 1:
+            if (carta1.atributo1 > carta2.atributo1) {
+                printf("A carta 1 venceu!\n");
+            } else if (carta2.atributo1 > carta1.atributo1) {
+                printf("A carta 2 venceu!\n");
+            } else {
+                printf("Empate!\n");
+            }
+            break;
+        case 2:
+            if (carta1.atributo2 > carta2.atributo2) {
+                printf("A carta 1 venceu!\n");
+            } else if (carta2.atributo2 > carta1.atributo2) {
+                printf("A carta 2 venceu!\n");
+            } else {
+                printf("Empate!\n");
+            }
+            break;
+        case 3:
+            if (carta1.atributo3 > carta2.atributo3) {
+                printf("A carta 1 venceu!\n");
+            } else if (carta2.atributo3 > carta1.atributo3) {
+                printf("A carta 2 venceu!\n");
+            } else {
+                printf("Empate!\n");
+            }
+            break;
+        default:
+            printf("Escolha inválida!\n");
+    }
+
+    return 0;
+}
+*Desafio 3: Comparação de cartas com base em dois atributos*
+#include <stdio.h>
+
+// Estrutura para representar uma carta
+typedef struct {
+    int atributo1;
+    int atributo2;
+} Carta;
+
+int main() {
+    Carta carta1, carta2;
+    int escolha1, escolha2;
+
+    printf("Digite o valor dos atributos da carta 1:\n");
+    printf("Atributo 1: ");
+    scanf("%d", &carta1.atributo1);
+    printf("Atributo 2: ");
+    scanf("%d", &carta1.atributo2);
+
+    printf("Digite o valor dos atributos da carta 2:\n");
+    printf("Atributo 1: ");
+    scanf("%d", &carta2.atributo1);
+    printf("Atributo 2: ");
+    scanf("%d", &carta2.atributo2);
+
+    printf("Escolha os atributos para comparar:\n");
+    printf("Atributo 1 (1 ou 2): ");
+    scanf("%d", &escolha1);
+    printf("Atributo 2 (1 ou 2): ");
+    scanf("%d", &escolha2);
+
+    int resultado1 = (escolha1 == 1) ? carta1.atributo1
